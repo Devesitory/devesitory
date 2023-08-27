@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdevesitory=self.webpackChunkdevesitory||[]).push([[50],{3826:e=>{e.exports=JSON.parse('{"label":"facebook","permalink":"/tags/facebook","allTagsPath":"/tags","count":1}')}}]);
