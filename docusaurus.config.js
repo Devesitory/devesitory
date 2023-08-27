@@ -8,7 +8,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const config = {
   title: "Devesitory",
   tagline: "Developer Repository",
-  // favicon: "img/favicon.ico",
+  favicon: "img/favicon.ico",
 
   url: "https://devesitory.phwt.me",
   baseUrl: "/",
@@ -33,7 +33,10 @@ const config = {
         docs: false,
         blog: {
           routeBasePath: "/",
-          showReadingTime: true,
+          blogTitle: "Devesitory",
+          blogDescription: "Developer Repository",
+          blogSidebarTitle: "Devesitory",
+          showReadingTime: false,
           editUrl: "https://github.com/devesitory/devesitory/tree/main",
         },
         theme: {
@@ -46,14 +49,12 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Replace with your project's social card
-      // image: "img/docusaurus-social-card.jpg",
+      image: "img/social-card.jpg",
       navbar: {
-        title: "Devesitory",
-        // logo: {
-        //   alt: "Devesitory Logo",
-        //   src: "img/logo.svg",
-        // },
+        logo: {
+          alt: "Devesitory Logo",
+          src: "img/logo.svg",
+        },
         items: [],
       },
       footer: {
@@ -61,7 +62,7 @@ const config = {
         links: [
           {
             label: "Facebook",
-            href: "https://www.facebook.com/devesitory",
+            href: "https://facebook.com/devesitory",
           },
           {
             label: "GitHub",
