@@ -39,6 +39,10 @@ h6 {
   font-weight: 500;
 }
 
+time {
+  font-family: "Kanit", sans-serif;
+}
+
 /* Responsive iframe - https://stackoverflow.com/a/29784327 */
 .wrapper {
   position: relative;
