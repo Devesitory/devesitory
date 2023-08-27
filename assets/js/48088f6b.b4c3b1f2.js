@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdevesitory=self.webpackChunkdevesitory||[]).push([[22],{5860:e=>{e.exports=JSON.parse('{"label":"hola","permalink":"/tags/hola","allTagsPath":"/tags","count":1}')}}]);
