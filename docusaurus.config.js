@@ -10,8 +10,9 @@ const config = {
   tagline: "Developer Repository",
   // favicon: "img/favicon.ico",
 
-  url: "https://devesitory",
+  url: "https://devesitory.github.io",
   baseUrl: "/",
+  trailingSlash: false,
 
   organizationName: "devesitory",
   projectName: "devesitory",
