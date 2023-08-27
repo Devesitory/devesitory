@@ -32,7 +32,6 @@ const config = {
       ({
         docs: false,
         blog: {
-          routeBasePath: "/",
           blogTitle: "Devesitory",
           blogDescription: "Developer Repository",
           blogSidebarTitle: "Devesitory",
@@ -76,6 +75,13 @@ const config = {
         darkTheme: darkCodeTheme,
       },
     }),
+
+  plugins: [
+    [
+      "@docusaurus/plugin-client-redirects",
+      { redirects: [{ from: "/", to: "/blog" }] }, // TODO: Create homepage
+    ],
+  ],
 };
 
 module.exports = config;
