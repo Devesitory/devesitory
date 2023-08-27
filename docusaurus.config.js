@@ -81,6 +81,7 @@ const config = {
       "@docusaurus/plugin-client-redirects",
       { redirects: [{ from: "/", to: "/blog" }] }, // TODO: Create homepage
     ],
+    "@docusaurus/plugin-ideal-image",
   ],
 };
 
