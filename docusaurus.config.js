@@ -37,6 +37,8 @@ const config = {
           blogSidebarTitle: "Devesitory",
           showReadingTime: false,
           editUrl: "https://github.com/devesitory/devesitory/tree/main",
+          blogSidebarCount: "ALL",
+          postsPerPage: 5,
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
