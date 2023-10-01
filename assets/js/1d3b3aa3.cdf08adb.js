@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdevesitory=self.webpackChunkdevesitory||[]).push([[1724],{6503:e=>{e.exports=JSON.parse('{"label":"refactoring","permalink":"/blog/tags/refactoring","allTagsPath":"/blog/tags","count":1}')}}]);
