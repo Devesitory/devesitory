@@ -1,0 +1,108 @@
+import Image from "@theme/IdealImage";
+
+# รีวิวการเตรียมตัวสอบ AZ-204 ฉบับคนด้อยประสบการณ์ Azure
+
+<Image img={require("./1*x_DmCk51Ip_LHag5orVOiQ.jpeg")} />
+
+พี่งสอบผ่านมาสด ๆ กับตัว AZ-204: Developing Solutions for Microsoft Azure หรือ แปลไทยได้ว่าการพัฒนาโซลูชันสำหรับใช้งานบน Microsoft Azure
+
+<!-- truncate -->
+
+โดยบทความนี้จะพูดถึงเนื้อหาตัวข้อสอบเป็นหลัก ถ้าสงสัยในกระบวนการสอบสามารถตามกลับไปดูในตอนที่มาแชร์เกี่ยวกับ AZ-900 ได้ เพราะไม่ต่างกันมาก ([แชร์ประสบการณ์สอบ AZ-900: Azure Fundamentals แบบออนไลน์](https://medium.com/devesitory/แชร์ประสบการณ์สอบ-az-900-azure-fundamentals-แบบออนไลน์-2c16189a2fee))
+
+<Image img={require("./1*OJJqqoM4rzIzZ39guw6whg.png")} />
+
+คำอธิบายตัวข้อสอบ AZ-204
+
+ตัวข้อสอบบอกว่าผู้สอบควรมีประสบการณ์แบบมืออาชีพกับ Azure อย่างน้อย 1–2 ปี แต่ส่วนตัวมีประสบการณ์จริงกับ Azure แค่ 6 เดือนนิด ๆ แถมยังไม่เคยใช้บริการบางตัวที่อยู่ในข้อสอบอีกด้วยแต่ก็ผ่านมาได้ ก็เลยอยากมาแชร์ว่าไปดูเนื้อหาที่ไหน แล้วลองฝึกอย่างไรบ้าง
+
+---
+
+สำหรับแหล่งความรู้เตรียมสอบก็เซ็ตเดิมกับตอนไปสอบ AZ-900 เลยก็คือ:
+
+## เนื้อหา - Pluralsight
+
+<Image img={require("./1*hm3xoAWFiMmxAmwoH6yA7w.png")} />
+
+แพลทฟอร์มเจ้าประจำที่เวลาอยากรู้อะไรก็เข้ามาที่นี่ จากที่ได้เคยแชร์ไปในบทความรวมแหล่งอัพสกิลโปรแกรมิ่งว่าเจ้า Pluralsight นี้มีฟีเจอร์ที่เรียกว่า Certification Prep Path ที่รวมพวกคอร์สที่เกี่ยวกับเนื้อหาข้อสอบมาไว้ให้ ([4 แหล่งอัพสกิลโปรแกรมมิ่งตั้งแต่เริ่มต้นไปจนใช้งานจริง](https://medium.com/devesitory/4-แหล่งอัพสกิลโปรแกรมมิ่งตั้งแต่เริ่มต้นไปจนใช้งานจริง-9bb0bd93a163))
+
+ตัว [Path ของข้อสอบ AZ-204](https://www.pluralsight.com/paths/developing-solutions-for-microsoft-azure-az-204) มีความยาวประมาณ 15 ชั่วโมง (ส่วนตัวดูความเร็ว x2.5 เพราะนั่งดูยาว ๆ ไม่ไหวจริง ๆ) ส่วนใหญ่จะเป็นการแนะนำบริการ แล้วก็แนวคิดที่เกี่ยวข้องเป็นส่วนใหญ่ มีเดโมให้ดูเล็กน้อย กับมี Exam Alert มาแนะจุดที่ควรไปทบทวนเพราะอาจเจอในข้อสอบได้
+
+ส่วนตัวมองว่าการเรียนใน Pluralsight เป็นแค่ส่วนทฤษฏีเท่านั้น ควรจะมีประสบการณ์เคยใช้จริงด้วยจะดีกว่า (ใน Pluralsight มีแลปให้ทำด้วย แต่ว่าต้องสมัครแบบ Premium) ดังนั้นอาจจะยังไม่พอกับการเตรียมตัวมากนัก
+
+ลิงก์สำหรับ [AZ-204 Certification Prep Path บน Pluralsight](https://www.pluralsight.com/courses/microsoft-azure-developer-preparing-take-az-204-exam) หรือหากใครไม่อยากสมัครสมาชิกรายปีก็ลองหาในอย่างใน [Udemy](https://www.udemy.com/courses/search/?src=ukw&q=az-204) ก็ได้ น่าจะมีคอร์สคุณภาพอยู่ไม่น้อย
+
+---
+
+## แลป - Microsoft Learn
+
+<Image img={require("./1*4IIt8HP1oqtHBVywQaMDDw.png")} />
+
+ตอนมาแชร์เกี่ยวกับ AZ-900 บอกเลยว่า Microsoft Learn ไม่ค่อยได้แตะเลย เพราะเหมือนนั่งอ่าน Docs ยาวเป็นพรืด ๆ แต่ว่าสำหรับ AZ-204 จำเป็นมากเพราะว่าในบางหัวข้อจะมีแลปให้ทำด้วย ให้ลองสร้าง Resource บน Azure ลองการตั้งค่าต่าง ๆ ดูว่าอะไรเป็นอะไร เนื้อหาบางตัวจะเกินข้อสอบไปบ้าง แต่ถ้าอันไหนน่าสนใจจะจดไว้ก็ดี
+
+ตรงนี้ช่วยได้มากเพราะแค่นั่งดูเดโมในคลิปบางทีก็ยังไม่เข้าใจว่าเกิดอะไรขึ้น พอได้ลองทำเองแล้วลองกดไปดูหน้าอื่น ๆ หรือปรับตั้งค่าเล่น ๆ ก็ยังได้ และที่สำคัญก็คือแลปพวกนี้ใช้ได้ฟรี ๆ ไม่ต้องมาลองทำใน Subscription ของตัวเอง แล้วลืมลบทิ้ง รู้ตัวอีกทีก็มีบิลส่งมาเก็บเงินแล้ว
+
+ลิงก์[คอร์ส Azure Developer บน Microsoft Learn](https://docs.microsoft.com/en-us/users/cloudskillschallenge/collections/3127b5w77g80)
+
+---
+
+## ข้อสอบ - ExamTopics/Whizlabs
+
+<Image img={require("./0*NYPezHHtxx3xL3Qz.png")} />
+
+หน้าแสดงผลการทดลองสอบของ Whizlabs (ยืม AZ-900 มา)
+
+ExamTopics กับ Whizlabs ก็เหมือนเดิมกับตอน AZ-900 ที่เอาไว้ดูให้คุ้นเคยกับแนวข้อสอบก่อน ไม่มีอะไรมากแต่ให้ระวังกับ ExamTopics ที่จะมีเฉลยผิดบางข้อ ถ้าคำตอบรู้สึกแปลก ๆ หรือว่าข้อนั้น Discussion แยอะแปลก ๆ ให้ลองกดเข้าไปดูที่คุยกันข้างในเผื่อว่าข้อนี้จะตอบแตกต่างไปจากเฉลยได้
+
+ตัวจำลองสอบใน Whizlabs ขอบอกเลยว่ายากมาก มีอยู่ 4 ชุดทำผ่านไปแค่ชุดเดียว แต่ไม่ค่อยมีข้อที่เฉลยผิด แล้วก็มีคำอธิบายชัดเจนทุกข้อ
+
+---
+
+รู้แหล่งเรียนรู้กันไปแล้วมาถึงส่วนเนื้อหาที่หลายคนกังวลว่าจะเจอในข้อสอบ ซึ่งผมก็เป็นหนึ่งในนั้นเลยอยากมาแชร์อีกส่วนว่ามันออกมาในรูปแบบไหน
+
+## ไม่เคยใช้ Azure CLI หรือ PowerShell เลยจะทำได้ไหม?
+
+ส่วนตัวก็ไม่ค่อนได้ใช้ Azure CLI หรือ PowerShell เลย สร้างอะไรก็ผ่าน Azure Portal หมด แล้วถ้าอยากสร้างแบบอัตโนมัติก็ไปพึ่ง Terraform เอา (ARM Template ยังไม่เคยแตะเลย)
+
+ในตัวข้อสอบมีถามเกี่ยวกับคำสั่งบ้าง แต่ไม่ได้ถามลึกถึงว่ามี Parameter อะไรบ้าง ต้องกรอกอะไรบ้าง อย่างที่เจอในข้อสอบเกี่ยวกับการสร้าง Web App Service จากไม่มีอะไรเลย ก็ต้องสร้าง Resource Group > App Service Plan > Web App > Config Deployment ตามลำดับ มีให้เลือกแค่คำสั่งเท่านั้น ไม่ต้องมากรอก Parameter อะไร
+
+1.  `az group create`
+2.  `az appservice plan create`
+3.  `az webapp create`
+4.  `az webapp deployment slot create`
+5.  `az webapp deployment source config`
+
+ไม่จำเป็นต้องเคยใช้งานคำสั่ง แค่คุ้นเคยกับตัวคำสั่งกับลำดับในการสร้าง Resource ก็พอ
+
+## ไม่มั่นใจว่าเข้าใจครบทุกหัวข้อหรือยัง มีอะไรตกหล่นไปไหม?
+
+<Image img={require("./1*YvxsrGsSlygHf6BXzZ6y5g.png")} />
+
+ในหน้ารายละเอียดของ [AZ-204 มีส่วน “Skills measured”](https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RE4oZ7B) ที่ไว้บอกว่าข้อสอบนี้จะทดสอบอะไรไว้อยู่ ก็ใช้ส่วนนี้ให้เป็นประโยชน์ได้เลย อันไหนมั่นใจแล้วก็ติ๊ก ยังไม่แน่ใจก็วง ๆ ไว้ จะได้กลับมาทบทวนได้ถูกหัวข้อ
+
+## มีคำถามเกี่ยวกับ Azure Kubernetes Service (AKS) ไหม?
+
+ตาม Skills measured บอกว่ามีแต่ Azure Container Registry (ACR) กับ Azure Container Instances (ACI) แต่ในข้อสอบพบว่ามีปนมาอยู่ข้อนึง จำได้ว่าเป็นเหมือนเป็นการตั้งค่า AKS ก็เลยเดาคำสั่งมั่ว ๆ ไป
+
+## มีส่วนไหนที่คิดว่าควรทบทวนเป็นพิเศษไหม?
+
+ขอบอกเลยว่าเป็นส่วน “Implement Azure security” ที่ระบุว่ามีถึง 20–25% ของข้อสอบเป็นรองแค่หัวข้อใหญ่สุด “Develop Azure compute solutions” ที่เป็น 25–30% ของข้อสอบ
+
+ส่วนตัวในส่วนนี้นอกจาก Azure Key Vault แล้วก็ไม่ค่อยได้แตะบริการอื่นเลย ซึ่งหลายคนก็อาจเป็นแบบนี้ที่จะไปยุ่งแต่พวก Compute หรือ Storage กันเป็นส่วนใหญ่ ตอนสอบเจอมาหลายข้อก็ทำเอางงไปนานเหมือนกัน เลยอยากแนะนำให้ทบทวนเรื่องนี้ไว้
+
+---
+
+## ชี้ช่องทางลดราคาค่าสอบ
+
+<Image img={require("./1*kROpesYhn4xbWzRsv95jCg.png")} />
+
+ทาง Microsoft มีชาแลนจ์ “[30 Days to Learn It](https://developer.microsoft.com/en-us/offers/30-days-to-learn-it)” อยู่ เลือกหัวข้อที่สนใจแล้วเรียนให้จบภายใน 30 วันจะได้รับส่วนลดค่าสอบ 50% ซึ่งตัวเนื้อหาก็เป็นส่วนเดียวกับใน Microsoft Learn มีแลปอะไรเหมือนกันหมด สำหรับ AZ-204 ให้เลือกในห้วข้อ Azure Developer แล้วก็เริ่มเรียนได้เลย!
+
+---
+
+## ลิงก์เพิ่มเติม
+
+- [Exam AZ-204: Developing Solutions for Microsoft Azure - Learn | Microsoft Docs](https://docs.microsoft.com/en-us/learn/certifications/exams/az-204)
+- [Azure Developer Cloud Skill Challenge | Microsoft Docs](https://docs.microsoft.com/en-us/users/cloudskillschallenge/collections/3127b5w77g80?WT.mc_id=cloudskillschallenge_4B2F91E9-04C5-4A1C-8F67-443ADEFD0806)
+- [Become Microsoft Certified Poster](https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RE2PjDI)
+- [Azure Developer Certification Journey](https://query.prod.cms.rt.microsoft.com/cms/api/am/binary/RE4woK5)
