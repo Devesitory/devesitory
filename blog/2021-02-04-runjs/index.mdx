@@ -1,0 +1,79 @@
+import Image from "@theme/IdealImage";
+
+# ลองรัน JavaScript แบบรีบ ๆ ด้วย RunJS
+
+<Image img={require("./1*Rfp_XSF0fhLRLduxbP3DEA.jpeg")} />
+
+บางทีเวลาเขียน JavaScript อยู่ก็นึกอยากจะลองรันคำสั่งอะไรเล็กน้อยก่อนเอาไปเขียนจริง หลายคนคงจะไปลองเขียนใน Console ของ Browser หรือว่าไปลองใน NodeJS ผ่าน Terminal เพราะว่าสะดวกดี
+
+{/* truncate */}
+
+<Image img={require("./1*qsCz5UsJMW-qvt6_0MsRcA.png")} />
+
+ตัวอย่างคำสั่งที่ใช้เป็นประจำเวลามีคนถามว่า Spread Operator คืออะไร
+
+แต่ว่าก็ยังมีข้อจำกัดอยู่ ถ้าอยากลองคำสั่งยาว ๆ หลาย ๆ บรรทัดละ? หรือว่าอยากลองโค้ดที่มันต้องติดตั้งไลบราลีเสริมละ? แล้วถ้าอยากรัน TypeScript ต้องทำอย่างไร?
+
+## ใช้ RunJS สิ!
+
+[RunJS](https://runjs.app/) น่าจะเป็นคำตอบของปัญหาที่กล่าวมาเกือบทั้งหมด อย่างอันนี้คือที่ลองรันโค้ดที่ก๊อปมาจาก [Stack Overflow](https://stackoverflow.com/a/7180095/7405706) เพราะสงสัยว่าจะเลื่อนตำแหน่งใน Array ยังไง
+
+<Image img={require("./1*z_2AUacuk6zb23dzoj30lw.png")} />
+
+จะเห็นได้ว่ามี Output ออกมาเป็นบรรทัดต่อบรรทัดเลยซึ่งก็จะช่วยให้ทราบผลลัพธ์ของแต่บรรทัดได้
+
+ลองมาดูตัวอย่างแบบจัดเต็มบ้าง ภาพด้านล่างคือเป็นการทดลองเขียนโดยใช้ TypeScript และไลบราลี Moment.js แบบง่าย ๆ
+
+<Image img={require("./1*rg1ENbciQ8G25D8Nd-Nz_Q.png")} />
+
+### การเรียกใช้งานก็แสนง่าย
+
+เพียงกดปุ่ม Windows / เปิด Spotlight พิมพ์ RunJS เคาะ Enter หนึ่งทีก็จะขึ้นจอโล่ง ๆ มาให้พิมพ์ได้แล้ว หรือถ้าจะให้เร็วกว่านั้นจะทำเป็น​ Hotkey / Shortcut เลยก็ได้
+
+<Image img={require("./1*m7XtIqZBYA87uId9OGN_Fw.png")} />
+
+หาผ่าน Spotlight เคาะ Enter หนึ่งทีก็ขึ้นมาให้ใช้ได้แล้ว
+
+## RunJS ทำอะไรได้บ้าง?
+
+_(ส่วนนี้แปลมาจากหน้าเว็บไซต์ล้วน ๆ)_
+
+### รันคำสั่งพร้อม Output บรรทัดต่อบรรทัด
+
+ตรงนี้เหมือนที่ได้โชว์ไปในภาพด้านบน
+
+<Image img={require("./0*KG-9jb_8kPGiir2E.png")} />
+
+### ใช้ไลบราลีภายนอก
+
+ตรงนี้เหมือนที่ได้โชว์ไปในภาพด้านบนเช่นเดิม
+
+<Image img={require("./0*4M32KgpbVbj7HVSe.png")} />
+
+### ใช้ Syntax แบบใหม่ได้
+
+จะเขียน TypeScript หรือ ES6+ ก็ได้เพราะมี Bable ช่วยแปลงให้
+
+<Image img={require("./0*9he-CTwnW5WPKnUE.png")} />
+
+### ลองรันคำสั่งของ Node API ได้
+
+<Image img={require("./0*UNTO3I64JXzOlqUU.png")} />
+
+### หน้าตาที่เรียบง่าย
+
+เรียบ ๆ ไม่มีอะไร แถมยังเปลี่ยน Theme ได้ด้วย
+
+<Image img={require("./0*Gp2yYx4yuKLj9_J2.png")} />
+
+## RunJS อาจจะไม่ใช่คำตอบ (ในบางกรณี)
+
+บางทีรันคำสั่งสั้น ๆ กลับไปหา Terminal ก็อาจจะสะดวกกว่า เพราะเปิดจาก Text Editor หรือ IDE ได้เลย (เผลอ ๆ เปิดค้างไว้อยู่แล้วด้วย)
+
+<Image img={require("./1*HyhLuwi0gfzffTHXGVz04g.png")} />
+
+Terminal ใน Visual Studio Code
+
+## สรุป
+
+ถ้าใครวนเวียนอยู่กับ JavaScript ตัวนี้ก็คงทำให้สะดวกขึ้นอย่างมาก ถ้าสนใจก็ไปดาว์นโหลดได้ที่ [runjs.app](http://runjs.app)
