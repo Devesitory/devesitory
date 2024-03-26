@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdevesitory=self.webpackChunkdevesitory||[]).push([[469],{1396:e=>{e.exports=JSON.parse('{"permalink":"/blog/page/4","page":4,"postsPerPage":5,"totalPages":7,"totalCount":31,"previousPage":"/blog/page/3","nextPage":"/blog/page/5","blogDescription":"Developer Repository","blogTitle":"Devesitory"}')}}]);
