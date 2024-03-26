@@ -1,0 +1,111 @@
+import Image from "@theme/IdealImage";
+
+# เปิดเว็บไซต์แบบง่าย ๆ ฟรี ๆ บน GitHub Pages
+
+<Image img={require("./1*yuXE8fT-GAfBoTu0QwohwA.jpeg")} />
+
+อยากได้เว็บส่วนตัว หรือเว็บไว้โชว์โปรเจคของเราไว้ แต่จะไปเช่าโฮสท์กับจดโดเมนตกปีละเกือบพันก็ดูไม่ค่อยจะคุ้มถ้าจะมาเปิดแค่นี้
+
+ถ้าใครอยากสร้างเว็บไซต์แต่ติดปัญหาพวกนี้อยู่ลองมาใช้ GitHub Pages ดูกัน เป็นบริการฟรีของ GitHub ที่ทำให้เราโฮสท์เว็บตรงจาก Repository ของเราได้เลย
+
+{/* truncate */}
+
+## เอาเว็บเราขึ้นไปบน GitHub Pages กัน
+
+สมมุติว่าเรามีเว็บของโปรเจคเราอยู่แล้ว อยากจะเอาขึ้นไปที่ GitHub Pages เพื่อที่คนอื่นจะได้เข้ามาดูโปรเจคเราได้ ต้องทำอย่างไรบ้าง?
+
+<Image img={require("./1*Vz0t4FulVzNkSzXwGt-0gg.png")} />
+
+เว็บไซต์ตัวอย่างแบบง่ายมาก ๆ เพราะทั้งเว็บมีแค่สองไฟล์คือ HTML กับรูปภาพ
+
+### 1\. สร้าง GitHub Repository สำหรับเว็บของเรา
+
+ตั้งชื่ออะไรก็ได้ แต่จะต้องเป็น Public เท่านั้น (บัญชีแบบฟรีเปิด GitHub Pages ได้จาก Public Repository เท่านั้น)
+
+<Image img={require("./1*9qOUnQyEF43kip-PtK8SKw.png")} />
+
+_ถ้าใครสร้าง Repository ไม่เป็นหรือยังไม่เคยใช้ GitHub มาก่อน ไปลองอ่านอีกบทความของเราได้ที่_ [_เปลี่ยนมาเก็บโค้ดของเราแบบง่าย ๆ บน GitHub กันเถอะ (ใช้ง่ายกว่าที่คิด)_](https://medium.com/devesitory/เปลี่ยนมาเก็บโค้ดของเราแบบง่าย-ๆ-บน-github-กันเถอะ-ใช้ง่ายกว่าที่คิด-17625477946d)
+
+### 2\. นำไฟล์เว็บไซต์ขึ้นไปบน Repository
+
+จะอัพไฟล์ผ่านตัวเว็บ GitHub โดยตรง หรือจะ Clone Repository มาแล้ว Push ไฟล์ขึ้นไปก็ได้ เอาไปให้ครบก็พอ โดยในที่นี้เราจะเอาขึ้นไปใน Branch “main”
+
+<Image img={require("./1*fzfOEO8LyhzmRhSLlqhUnQ.png")} />
+
+Push ขี้นไปบน Repository ผ่าน GitHub Desktop
+
+### 3\. เปิดใช้งาน GitHub Pages ใน Repository
+
+ไปที่หน้า Repository ของเราและไปที่ Settings > Pages ก็จะเจอกับหน้าแบบในรูป ให้เลือก Branch เป็น “main” และ “/ (root)” จากนั้นกด “Save” ได้เลย
+
+<Image img={require("./1*QT0UGsTajiksv6uX8WKkvA.png")} />
+
+ข้อความแจ้งว่าเว็บเราได้ขึ้นไปอยู่บน GitHub Pages แล้ว
+
+จากนั้นจะได้รับแจ้งเตือนว่าเปิดการใช้งาน GitHub Pages สำหรับ Repository นี้แล้ว พร้อมกับลิงก์พาไปยังเว็บไซต์ของเรา เข้าไปในลิงก์นั้นแล้วรอสักพักเว็บของเราก็จะเข้าได้แล้ว ซึ่งเวลาต้องการแก้ไขเว็บไซต์ก็สามารถ Push การแก้ไขขึ้นไปได้เลย แล้วตัวเว็บไซต์จะอัพเดตตามให้เอง
+
+<Image img={require("./1*R7amNPlTGWmylctEWvkF6A.png")} />
+
+เว็บของเราขึ้นไปอยู่บน GitHub Pages แล้ว!
+
+---
+
+## เปิดเว็บไซต์นอก Branch “main”
+
+บางคนอยากเปิดเว็บไซต์ไว้ใน Repository เดียวกับตัวโปรเจค แต่ไม่อยากให้ไฟล์เว็บมาปนกับไฟล์โปรเจคก็สามารถตั้งให้เว็บไซต์อยู่ในโฟลเดอร์ `docs` หรืออยู่ใน Branch อื่น วิธีการเหมือนเดิมเพียงแค่เปลี่ยนเล็กน้อย
+
+1.  สร้าง Repository ใหม่ (ถ้ายังไม่มี)
+2.  นำไฟล์เว็บไซต์ขึ้นไปบน Repository ใน Branch ที่ต้องการ หรือไว้ในโฟลเดอร์ `/docs/` ของ Branch หลัก
+3.  เปิดใช้งาน GitHub Pages ใน Repository โดยเลือก Branch และโฟลเดอร์ที่ต้องการเปิดให้ตรงกับที่นำไฟล์ขึ้นใปในขั้นตอนที่ 2
+
+คราวนี้เว็บของโปรเจคกับไฟล์โปรเจคก็จะอยู่ใน Repository เดียวกันแล้ว
+
+---
+
+## ข้อจำกัด
+
+ตัว GitHub Pages สามารถโฮสท์ได้แค่พวก Static Site เท่านั้น หรือเว็บไซต์ที่ทำงานผ่าน HTML, CSS และ JavaScript ทั่วไปเท่านั้น ไม่มีการติดต่อฐานข้อมูล หรือมี Backend
+
+ดังนั้นเว็บไซต์ที่ต้องใช้งานเซิฟเวอร์ เช่น เว็บที่เขียนด้วย PHP, เว็บที่มี Backend หรือเว็บที่ต้องติดต่อฐานข้อมูล จะเปิดใน GitHub Pages ไม่ได้
+
+> แล้วเว็บพวก Single Page Application (SPA) ที่เขียนด้วย React หรือ Vue ละขึ้นได้ไหม?
+
+- **ได้**: ถ้าเว็บไซต์มีหน้าเดียวจริง ๆ
+- **ไม่ได้**: ถ้ามีการใช้ Router เพื่อเปลี่ยนหน้า
+
+เพราะว่าการใช้งานตัว Router จำเป็นต้องมีการตั้งค่าที่ฝั่งเซิฟเวอร์ให้ส่งทุก Request มาที่ `index.html` ซึ่ง GitHub Pages ไม่สามารถตั้งตรงนี้ได้
+
+ตัวอย่างไฟล์ .htaccess ที่ต้องตั้งค่าหากจะนำเว็บที่ใช้ Router ขึ้นไปยังเซิฟเวอร์ Apache
+
+> อ้าวใช้พวกเฟรมเวิร์คไม่ได้แบบนี้ถ้าเว็บซับซ้อนก็ทำยากละสิ?
+
+ไม่ยากถ้าเราเลือกเทคโนโลยีที่ถูกต้องมาใช้งาน นั่นก็คือ Static Site Generator (SSG) ที่ทำให้เราสามารถเขียนเว็บไซต์ด้วยเฟรมเวิร์คที่เราคุ้นเคยได้ แถมยังนำไปเปิดบน GitHub Pages ได้
+
+<Image img={require("./0*yXqxoZWfpRnTF4K_.jpg")} />
+
+การทำงานของ Static Site Generator (ที่มา: dzone.com)
+
+เพราะเมื่อทำการ Build ตัว Static Site Generator จะแปลงเว็บไซต์ของเราให้เป็น Static Site ที่สามารถขึ้นไปเปิดบน GitHub Pages ได้
+
+โดย Static Site Generator ที่น่าสนใจจะเป็น [Gatsby](https://www.gatsbyjs.com/) สำหรับ React และ [Nuxt.js](https://nuxtjs.org/) สำหรับ Vue หรือถ้าใครใช้ภาษาอื่นก็สามารถเข้าไปดูได้ที่ [Jamstack | Site Generators](https://jamstack.org/generators/)
+
+<Image img={require("./1*z69AIkxGPTQDh3V_6-UJfg.png")} />
+
+รายการ Static Site Generators สำหรับภาษาต่าง ๆ บน Jamstack
+
+---
+
+## เพิ่มเติม
+
+- เว็บไซต์ GitHub Pages สามารถต่อกับโดเมนส่วนตัวที่มีอยู่แล้วได้ แค่สร้าง CNAME Record ใน DNS ให้ชี้มาที่ตัว GitHub Pages ของเรา
+- เรื่องข้อจำกัดในส่วนของการใช้ Router ใน Single Page Application นอกจากการใช้ Firebase Hosting ตรงนี้มีอีกทางเลือกหนึ่งคือใช้ Firebase Hosting ซึ่งก็ฟรีเหมือนกัน
+
+[**เปิดเว็บไซต์พร้อมโดเมนสุดเท่แบบฟรี ๆ ด้วย Firebase Hosting**  
+\_ได้เคยแนะนำการใช้ GitHub Pages ในการโฮสท์เว็บไซต์กันไปแล้ว ถึงแม้จะสะดวกแต่ก็ติดข้อจำกัดที่ว่าจะเปิดเว็บแบบ Single Page…\_medium.com](https://medium.com/devesitory/เปิดเว็บไซต์พร้อมโดเมนสุดเท่แบบฟรี-ๆ-ด้วย-firebase-hosting-612a6a78ad83 "https://medium.com/devesitory/%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A%E0%B9%84%E0%B8%8B%E0%B8%95%E0%B9%8C%E0%B8%9E%E0%B8%A3%E0%B9%89%E0%B8%AD%E0%B8%A1%E0%B9%82%E0%B8%94%E0%B9%80%E0%B8%A1%E0%B8%99%E0%B8%AA%E0%B8%B8%E0%B8%94%E0%B9%80%E0%B8%97%E0%B9%88%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B8%9F%E0%B8%A3%E0%B8%B5-%E0%B9%86-%E0%B8%94%E0%B9%89%E0%B8%A7%E0%B8%A2-firebase-hosting-612a6a78ad83")[](https://medium.com/devesitory/เปิดเว็บไซต์พร้อมโดเมนสุดเท่แบบฟรี-ๆ-ด้วย-firebase-hosting-612a6a78ad83)
+
+---
+
+## อ่านเพิ่มเติม
+
+- [GitHub Pages | Websites for you and your projects, hosted directly from your GitHub repository. Just edit, push, and your changes are live.](https://pages.github.com/)
+- [Static Site Generators — Top Open Source SSGs | Jamstack](https://jamstack.org/generators/)
