@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdevesitory=self.webpackChunkdevesitory||[]).push([[9122],{2941:e=>{e.exports=JSON.parse('{"label":"web development","permalink":"/blog/tags/web-development","allTagsPath":"/blog/tags","count":1,"unlisted":false}')}}]);
