@@ -1,0 +1,127 @@
+import Image from "@theme/IdealImage";
+
+# เปิดเว็บไซต์พร้อมโดเมนสุดเท่แบบฟรี ๆ ด้วย Firebase Hosting
+
+<Image img={require("./1*knQQh7Bcz4VN06nmYDndYA.jpeg")} />
+
+ได้เคยแนะนำการใช้ GitHub Pages ในการโฮสท์เว็บไซต์กันไปแล้ว ถึงแม้จะสะดวกแต่ก็ติดข้อจำกัดที่ว่าจะเปิดเว็บแบบ Single Page Application ที่ใช้ Router ไม่ได้ ทำให้ต้องมามองอีกตัวเลือกหนึ่งที่ทั้งใช้งานง่าย, ฟรี และยังมีโดเมนเท่ ๆ ให้อีกด้วยนั่นก็คือ Firebase Hosting
+
+{/* truncate */}
+
+[**เปิดเว็บไซต์แบบง่าย ๆ ฟรี ๆ บน GitHub Pages**  
+medium.com](https://medium.com/devesitory/เปิดเว็บไซต์แบบง่าย-ๆ-ฟรี-ๆ-บน-github-pages-cc1b9a3a212c "https://medium.com/devesitory/%E0%B9%80%E0%B8%9B%E0%B8%B4%E0%B8%94%E0%B9%80%E0%B8%A7%E0%B9%87%E0%B8%9A%E0%B9%84%E0%B8%8B%E0%B8%95%E0%B9%8C%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B8%87%E0%B9%88%E0%B8%B2%E0%B8%A2-%E0%B9%86-%E0%B8%9F%E0%B8%A3%E0%B8%B5-%E0%B9%86-%E0%B8%9A%E0%B8%99-github-pages-cc1b9a3a212c")[](https://medium.com/devesitory/เปิดเว็บไซต์แบบง่าย-ๆ-ฟรี-ๆ-บน-github-pages-cc1b9a3a212c)
+
+## Firebase คืออะไร?
+
+Firebase เป็นแพลทฟอร์มของ Google ที่รวมบริการต่าง ๆ ที่จะมาเป็นแบคเอนด์ให้กับแอปฯของเราใช้งาน (Backend as a Service — BaaS) เช่น Realtime Database สำหรับเก็บข้อมูล, Cloud Messaging สำหรับส่งแจ้งเตือนเข้าแอปฯ และ Hosting สำหรับโฮสท์เว็บไซต์แบบที่เรากำลังจะทำกันนี่เอง
+
+## เอาเว็บขึ้น Firebase Hosting กันเถอะ
+
+เนื่องจากโม้ไว้เยอะเรื่องสามารถเอา Single Page Application ที่ใช้ Router ขึ้นไปโฮสท์ได้ ดังนั้นในครั้งนี้จะเอาเป็น React พร้อม React Router เป็นเว็บตัวอย่าง
+
+<Image img={require("./1*N0IvMyDi5OclVyCmsP1h5g.png")} />
+
+เว็บไชต์ตัวอย่าง มีเพียงหน้าแรกกับหน้าเกี่ยวกับ
+
+### 1\. เตรียมไฟล์เว็บไซต์
+
+ก่อนจะนำขึ้นก็ต้องเตรียมไฟล์เว็บไซต์ให้พร้อมก่อน ซึ่งก็มักจะต่างกันไปตามเฟรมเวิร์คหรือไลบราลีที่ใช้งาน
+
+- หากเป็นเว็บ Static HTML ไม่ใช้เฟรมเวิร์คอะไรเสริมก็ไม่จำเป็นต้องทำอะไร ไฟล์ทั้งหมดที่มีก็คือไฟล์ที่จะนำขึ้นไป
+- แต่ถ้าใช้เฟรมเวิร์คบางตัวจะต้องทำการ Build ก่อน อย่างเช่น React และ Vue จะต้องรันคำสั่ง `npm run build` ก่อน
+
+ในตัวอย่างนี้ใช้ React จาก `create-react-app` เมื่อเราทำการ `npm run build` แล้วก็จะได้ไฟล์ออกมาในโฟลเดอร์ `build` (จำชื่อโฟลเดอร์นี้ไว้ด้วย)
+
+<Image img={require("./1*ERqc9HWLs0y7plGJxDsJZQ.png")} />
+
+โฟลเดอร์ “build” ที่สร้างจากคำสั่ง “npm run build”
+
+### 2\. ติดตั้ง Firebase CLI
+
+ในการนำขึ้น Firebase Hosting จะต้องใช้ Firebase CLI มาช่วย ซึ่งสามารถติดตั้งผ่าน NPM ได้ตามคำสั่งด้านล่างนี้
+
+npm install -g firebase-tools
+
+สำหรับการติดตั้งด้วยวิธีอื่นสามารถดูได้ตามลิงก์ที่แนบไว้ด้านล่าง:
+
+[**Firebase CLI reference**  
+\_ABTExperimentPayloadExperimentOverflowPolicy_firebase.google.com](https://firebase.google.com/docs/cli "https://firebase.google.com/docs/cli")[](https://firebase.google.com/docs/cli)
+
+### 3\. เข้าสู่ระบบบัญชี Google
+
+ตัวโปรเจค Firebase จะผูกกับบัญชี Google ของเรา ดังนั้นจึงต้องเข้าสู่ระบบก่อน เมื่อรันคำสั่งแล้วจะมีหน้าเว็บเปิดขึ้น เลือกบัญชีให้ถูกต้องก็จะเป็นอันเสร็จสิ้น
+
+firebase login
+
+### 4\. ตั้งค่า Firebase ให้กับเว็บไซต์ของเรา
+
+เปิด Command Prompt/Terminal ที่โฟลเดอร์ของโปรเจคเว็บฯของเรา และรันคำสั่งด้านล่าง
+
+firebase init
+
+จะมีคำว่า “FIREBASE” ตัวใหญ่ ๆ โผล่มาพร้อมกับตัวเลือกมากมาย ให้เลือกเพียง “Hosting” และกด `Enter` เพื่อไปต่อ
+
+<Image img={require("./1*0Zw6Yhc7nXhDxZYOxFbVsQ.png")} />
+
+รันคำสั่ง “firebase init” และเลือก “Hosting”
+
+### 5\. สร้าง/เลือกโปรเจค Firebase
+
+ในการใช้ Hosting ตัวเว็บไซต์จะต้องผูกไว้กับโปรเจค Firebase ซึ่งหากยังไม่มีก็สามารถสร้างได้ในขั้นตอนนี้เลย
+
+- หากมีโปรเจคอยู่แล้วให้เลือก “Use an existing project”
+- หากต้องการสร้างใหม่ให้เลือก “Create a new project”
+
+<Image img={require("./1*dbrQ0R3zzbP-pdQTV0c03Q.png")} />
+
+กรอกชื่อโปรเจคที่ต้องการจะสร้างใหม่
+
+> สำหรับคนที่เลือกที่จะสร้างโปรเจคใหม่ ชื่อที่เลือกนี้จะเป็นชื่อของโดเมนที่เราจะได้รับ คิดให้ดีก่อนตั้งเพราะไม่สามารถเปลี่ยนได้ อย่างเช่นในนี้ตั้งว่า devesitory-site ก็จะได้เป็นโดเมน [https://devesitory-site.web.app](https://devesitory-site.web.app)
+
+### 6\. ตั้งค่า Firebase Hosting
+
+ในขั้นตอนนี้จะพบกับ 3 คำถามคือ:
+
+- **ไฟล์เว็บไซต์อยู่ที่โฟลเดอร์อะไร?** (What do you want to use as your public directory?): ให้กรอกตามช่ือโฟลเดอร์ที่ได้มาในขั้นตอนที่ 1 (ในตัวอย่างนี้จะเป็น `build`)
+- **เว็บไซต์เป็น Single Page Application หรือไม่?** (Configure as a single-page app?): เนื่องจากในตัวอย่างนี้เราเป็น SPA จึงให้ตอบว่า “Y” (Yes)
+- **จะตั้งค่าการ Build และ Deploy อัตโนมัติกับ GitHub Actions ไหม?** (Set up automatic builds and deploys with GitHub?): ตอบว่า “N” (No)
+
+<Image img={require("./1*pYCsayNz5Mm4cM2loIUaMw.png")} />
+
+บางคนอาจจะมีคำถามสุดท้ายโผล่ขึ้นมาหากในโฟลเดอร์ที่กรอกไปในคำถามแรกมีไฟล์อยู่แล้ว (เช่น รันคำสั่ง `npm run build` ไปแล้ว) ให้ตอบว่า “N” (No) เพื่อกันไม่ให้ไฟล์ถูกเขียนทับ
+
+เมื่อตอบทุกคำถามครบแล้วเป็นอันเสร็จสิ้นการตั้งค่า Firebase และ Firebase Hosting
+
+### 7\. นำเว็บไซต์ขึ้นไปยัง Firebase Hosting
+
+เว็บฯก็พร้อม Firebase ก็พร้อมแล้ว ก็สามารถนำขึ้นไปได้ง่าย ๆ ด้วยคำสั่งเดียว
+
+firebase deploy
+
+เมื่อรันคำสั่งแล้วก็นั่งรอได้เลย ไฟล์ทั้งหมดในโฟลเดอร์ที่เราระบุไว้ (ในที่นี้คือ `build`) ก็จะถูกทยอยนำขึ้นไป
+
+<Image img={require("./1*yEGWBAzpuFBg0PHqZfR29g.png")} />
+
+เมื่อเสร็จสิ้นแล้วก็จะมี **Hosting URL** แสดงให้เห็น เป็นการบอกว่าเว็บไซต์เราขึ้นไปอยู่บน Firebase Hosting แล้วพร้อมให้เข้าชมตาม URL นั้นได้เลย
+
+สำหรับใครอยากเข้าชมเว็บไซต์ตัวอย่างนี้เข้าไปดูได้ที่: [https://devesitory-site.web.app/](http://devesitory-site.web.app/)
+
+### ครั้งต่อไป
+
+ขั้นตอนยาวเหยียดขนาดนี้ส่วนใหญ่จะเป็นการตั้งค่า Firebase เกือบทั้งหมด แต่จะนำขึ้นครั้งต่อ ๆ ไปไม่ต้องทำขนาดนี้แล้ว เมื่อไรที่ต้องการนำขึ้นก็เพียงใช้แค่คำสั่งเดียวคือ `firebase deploy` ก็เป็นที่เรียบร้อยแล้ว
+
+## ทดสอบ Router
+
+ในการจะทดสอบว่า React Router ใช้งานได้หรือไม่ ให้ลองเข้าหน้าที่ไม่ใช่หน้าแรกจากการกรอก URL ตรง ๆ โดยจะลองกับหน้า About ([https://devesitory-site.web.app/about](https://devesitory-site.web.app/about))
+
+ซึ่งถ้าเข้าแล้วพาไปยังหน้าที่ถูกต้องไม่ส่ง 404 Not Found กลับมา ก็แปลว่าใช้งานได้
+
+<Image img={require("./1*1HHzDElFOpc5Vy_lM0FXiQ.png")} />
+
+เข้าได้ถือว่าผ่าน
+
+## สรุป
+
+ขั้นตอนการตั้งค่าแม้จะดูยุ่งยากกว่า GitHub Pages เล็กน้อย แต่ว่าก็สะดวกไม่พอกัน และยังนำ Single Page Application แบบใช้งาน Router ขึ้นได้อีกด้วย แถมยังมีโดเมน web.app ติดมากับโปรเจคเราให้อย่างฟรี ๆ
+
+แต่อย่างไรก็ตาม Firebase Hosting ก็ยังนำขึ้นได้แต่ Static Website และ Single Page Application เท่านั้น หากเว็บไซต์ของเรามีส่วน Backend เช่น API, ติดต่อฐานข้อมูล จะต้องนำขึ้นแยกส่วนกันไม่สามารถนำขึ้นพร้อมกันทั้งหมดผ่าน Firebase Hosting ได้

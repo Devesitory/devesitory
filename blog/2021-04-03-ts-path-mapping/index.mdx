@@ -1,0 +1,47 @@
+import Image from "@theme/IdealImage";
+
+# ไม่ต้อง Import ใน TypeScript ยาว ๆ อีกต่อไปด้วย Path Mapping
+
+<Image img={require("./1*My2OlKD-ZnsSA4m97NgsFg.jpeg")} />
+
+ในโปรเจคขนาดใหญ่ เพื่อง่ายต่อการจัดการจะต้องจัดไฟล์ให้เป็นระเบียบ แต่ก็ต้องแลกมากับความซับซ้อนของไฟล์ในตัวโปรเจคเอง
+
+{/* truncate */}
+
+สมมุติมีโครงสร้างโฟลเดอร์แบบนี้แล้วไฟล์ `index.ts` ต้องการใช้ไฟล์ `component.ts` (ต้องการ Import มาใช้งาน)
+
+<Image img={require("./1*NY6gF80_xJSXvPnvlQM8UA.png")} />
+
+เวลา `import` ภายในไฟล์ `index.ts`ก็จะต้องเขียนแบบนี้
+
+<Image img={require("./1*jLHJeVARq4nutDg_ZGfJLw.png")} />
+
+แบบนี้ดูว่าอาจจะไม่มีปัญหามาก แต่ถ้าโครงสร้างโฟลเดอร์เป็นแบบนี้ละ?
+
+<Image img={require("./1*Y8CAEkcVURbwOzSjtH7Wbg.png")} />
+
+เวลา `import` ภายในไฟล์ `index.ts`ก็จะต้องขึ้นไปหา Root ก่อนแล้วค่อยลงไปหา `component.ts` อีกที ทำให้ต้องเปลี่ยนไปเขียนแบบนี้แทน
+
+<Image img={require("./1*eKe5drusV30iojmVmx5QXA.png")} />
+
+พอโปรเจคใหญ่ขึ้นเรื่อย ๆ โครงสร้างก็จะซับซ้อนขึ้น หรือลึกขึ้นไปเรื่อย ๆ การ `import` แบบนี้ก็จะทำให้บรรทัดยาวขึ้นเรื่อย ๆ เวลาจะย้ายที่อยู่ไฟล์ก็ต้องมาแก้ที่อยู่ตรง `import`อีก ถ้าใครมี IDE ช่วยก็คงสบายไป
+
+## ให้ Path Mapping เข้ามาช่วย
+
+เราสามารถตั้ง Path Mapping ได้ภายในไฟล์ `tsconfig.json` ได้เลย โดยต้องระบุ `baseUrl` กับ `paths` ภายใต้ `compilerOptions`
+
+จากตัวอย่างเป็นการบอก TypeScript ว่าถ้าเจอ `import` ที่ขึ้นต้นด้วย `@components` ให้เข้าไปหาที่ `components/`
+
+การที่ระบุ `"baseUrl": "."` เป็นการบอกว่าถ้าเจอ `import` แบบไม่ใช้ Relative Path จะต้องไปเริ่มหาที่ไหน การที่ระบุเป็นจุด (`.`) แปลว่าให้เริ่มหาที่ระดับเดียวกับไฟล์ `tsconfig.json` (โดยปกติจะอยู่ที่ระดับบนสุดของโปรเจค)
+
+จะทำให้เมื่อเราต้องการ `import` ก็สามารถเอา `@components` นำหน้าได้เลยแล้วตัว TypeScript จะไปหาในที่ที่เราระบุไว้ใน `paths` ให้เอง
+
+<Image img={require("./1*vUgTWeb7N1lA2gIcsHp6Ug.png")} />
+
+เปรียบเทียบก่อน/หลังการตั้ง Path Mapping
+
+ในส่วน `key` ที่ระบบไว้ใน `paths` ว่า `@components/*` ตรงนี้ไม่จำเป็นจะต้องขึ้นต้นด้วย `@` หรือจะว่าต้องใช้ชื่อเดียวกับโฟลเดอร์ที่ต้องการชี้ไปก็ได้ การตั้งแบบนี้เพื่อที่จะเข้าใจได้ง่าย และกันไปซ้ำกับชื่อโฟลเดอร์ที่มีอยู่แล้ว จะตั้งเป็น `~components/*`, `goToComponent/*`, `somethingCompletelyUnrelated/*` หรือจะเป็นอะไรก็ได้
+
+## อ้างอิง
+
+- [TypeScript: Documentation — Module Resolution](https://www.typescriptlang.org/docs/handbook/module-resolution.html#path-mapping)

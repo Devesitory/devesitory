@@ -1,0 +1,157 @@
+import Image from "@theme/IdealImage";
+
+# เปิดเว็บพร้อม API ได้อย่างสะดวกและปลอดภัยด้วย Azure Static Web Apps
+
+<Image img={require("./1*O32sbZZN7LOiNTdNY6kR4Q.jpeg")} />
+
+การพัฒนาเว็บไซต์อาจจะดูไม่มีอะไรมาก แต่พอจะนำขึ้นไปเปิดใช้งานจริงกลับพบว่ามีจุดที่ต้องกังวลอีกเยอะไม่ว่าจะเป็น:
+
+{/* truncate */}
+
+- **การติดต่อระหว่างหน้าบ้านกับหลังบ้าน** — เว็บหน้าบ้านจะคุยกับ API หลังบ้านได้หรือเปล่า? ต้องไปตั้งค่าพวก CORS หรือ Proxy ไหม?
+- **​ความปลอดภัย** — ที่เราเขียนไว้มันปลอดภัยจริงหรือเปล่า? จะมีใครมาเข้าหน้า Admin ในเว็บเราได้ไหม?
+- **ความสะดวกในการ Deploy** — จะเอาขึ้นแบบแมนนวลทุกรอบก็ไม่ไหว จะทำ CI/CD ก็ขึ้เกียจ มีวิธีที่ง่ายกว่านี้ไหม?
+- **ความสามารถในการ Scale** — คนเข้าเยอะแล้วเว็บจะไหวไหม? ต้องมาตั้งอะไรเพิ่มอีกรึเปล่า?
+
+เหนื่อยจากการพัฒนาไม่พอยังต้องมาเจอปัญหาพวกนี้อีก ทำเอาบางทีหมดกำลังใจในการพัฒนาต่อเลยทีเดียว ในบทความนี้เรามาดูกันว่า Azure Static Web Apps จะช่วยอะไรในปัญหาพวกนี้ได้บ้าง
+
+---
+
+## Azure Static Web Apps ช่วยได้!
+
+<Image img={require("./1*tBs4G_7lSDHJqEIXpSVxUg.png")} />
+
+บริการน้องใหม่บน Azure ที่พึ่งจะเปิดให้ใช้งานทั่วไปเมื่อเดือนพฤษภาคม 2564 ที่ผ่านมานี้ เข้ามาช่วยแก้ปัญหาที่กล่าวมาได้ทั้งหมดเลย
+
+- **การติดต่อระหว่างหน้าบ้านกับหลังบ้าน** —ถึงแม้จะพัฒนา Frontend กับ API แยกกัน แต่พอ Deploy จริงตัว Static Web Apps จะเชื่อมให้อัตโนมัติ สมมุติว่าเว็บเราอยู่ที่ `**example.com**` ตัว API จะมาอยู่ใน `**example.com/api**`โดยอัตโนมัติ ไม่ต้องไปตั้งค่าอะไรเพิ่มเติม
+- **​ความปลอดภัย** — ตัว Static Web Apps มาพร้อมกับบริการ Authorization ในตัว ทำให้ไม่ต้องตั้งค่าเองทั้งหมดแต่แรก
+- **ความสะดวกในการ Deploy** — Static Web Apps มาพร้อมกับ[ส่วนขยายใน Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurestaticwebapps) เพียงแค่คลิกเดียวก็จะตั้งค่า CI/CD ให้ไปเชื่อมกับ GitHub Repository ของเราโดยอัตโนมัติ
+- **ความสามารถในการ Scale** — ด้วยความที่เป็นเว็บไซต์ Static ทำให้ผู้ใช้สามารถเข้าถึงเว็บไซต์ได้อย่างรวดเร็ว และส่วน API ที่ทำงานบน Azure Functions ที่รองรับการ Scale แบบอัตโนมัติอยู่แล้ว ทำให้ไม่ต้องกังวลในเรื่องนี้
+
+ต่อจากนี้มาเจาะลึกลงในแต่ละหัวข้อกันว่าในแต่ละส่วนนี้มันทำงานอย่างไร ทำไมถึงช่วยแก้ปัญหาพวกนี้ให้เราได้
+
+## การทำงานของ Static Web Apps
+
+<Image img={require("./0*sF8WlRdBjskC9IE1.png")} />
+
+ภาพรวมการทำงานของ Azure Static Web Apps
+
+ส่วนหลักของเว็บไซต์ก็จะแยกเป็นหน้าบ้าน และ API โดยทั้งสองจะพัฒนาแยกส่วนกัน
+
+- **เว็บไซต์หน้าบ้าน**: เป็นเว็บไซต์แบบ Static ที่สร้างในรูปแบบ Single-page Application (SPA) หรือจาก Static Site Generator (SSG) ที่สามารถทำงานได้โดยไม่ต้องมีเซิร์ฟเวอร์หลังบ้าน
+- **API หลังบ้าน**: พัฒนาและทำงานผ่าน Azure Functions ที่เป็นบริการให้เรารันโค้ดได้แบบไม่ต้องมีเซิร์ฟเวอร์ (Serverless Compute) รองรับการพัฒนาหลายภาษา รวมถึง JavaScript และ TypeScript ทำให้พัฒนาทั้งหน้าและหลังบ้านด้วยภาษาเดียวกันได้เลย
+
+ตามปกติเวลานำขึ้นไป ​Deploy ก็คงจะแยกเป็น `**example.com**` สำหรับหน้าบ้าน และ `**api.example.com**`สำหรับตัว API ซึ่งก็ต้องตั้งค่า CORS หรือ Proxy เพื่อให้หน้าบ้านเรียก API ได้
+
+แต่เมื่อนำไป Deploy ผ่าน Static Web Apps จะทำการรวมให้อยู่ภายใต้โดเมนเดียวกันคือ
+
+- `**example.com**` — สำหรับหน้าบ้าน
+- `**example.com/api**` — สำหรับ API
+
+ทำให้หน้าบ้านสามารถเรียก API ได้เสมือนว่าอยู่บนเว็บเดียวกัน ซึ่งพวกนี้ Static Web Apps จัดการให้หมด เราไม่จำเป็นต้องมาตั้งค่าอะไรเองเพิ่มเติมเลย
+
+---
+
+## **ป้องกันเว็บไซต์บน Static Web Apps ให้ปลอดภัย**
+
+ตัว Static Web Apps มาพร้อมกับระบบ Authentication และ Authorization ในตัว มาพร้อมกัน Provider หลากหลายให้สามารถเข้าสู่ระบบผ่านบัญชีเช่น **Facebook, Google, GitHub** หรือ **Twitter** ได้ และยังมีคุณสมบัติพื้นฐานอย่าง **Roles** และ **Claims** ไว้สำหรับแยกกลุ่มผู้ใช้และเก็บ/ส่งข้อมูลผู้ใช้
+
+ซึ่งการนำไปใช้กับเว็บเรา ไม่จำเป็นต้องตั้งค่าอะไรเพิ่มเติม เพราะจะเอาไปรวมกับเว็บไซต์ให้อัตโนมัติเหมือน API Routes เลย โดยเข้าได้ผ่าน `**/.auth/**` ตามในตัวอย่างนี้:
+
+- `**example.com/.auth/login/github**`— เข้าสู่ระบบผ่านบัญชี GitHub
+- `**example.com/.auth/me**`— ดูข้อมูลผู้ใช้ปัจจุบัน
+- `**example.com/.auth/logout**` — ออกจากระบบ
+
+---
+
+### การป้องกันหน้าเว็บไซต์
+
+หน้าบางหน้าหรือ API บางตัวอยากให้ Login ก่อนถึงจะเข้าได้ พวกนี้สามารถกำหนดได้ใน `staticwebapps.config.json` ได้เลยดังตัวอย่างด้านล่าง
+
+จากตัวอย่างนี้จะเป็นการบอกว่า:
+
+- `**/client/***` — เข้าได้เฉพาะผู้ใช้ที่เข้าสู่ระบบแล้วเท่านั้น (`authenticated` เป็น Role พื้นฐานที่มากับผู้ใช้ทุกคนที่เข้าสู่ระบบแล้ว)
+- `**/admin/***` — เข้าได้เฉพาะผู้ใช้ที่มี Role เป็น `administrator` เท่านั้น
+
+การจำกัดสิทธิ์นี้จะทำได้เหมือนเว็บเรามีเซิร์ฟเวอร์อยู่เลย ก็คือถ้าไม่มีสิทธิ์เข้าถึงก็จะได้ `401 Unauthorized` กลับมาทันที ไม่ได้โผล่หน้าเว็บให้เห็นอยู่แว๊บนึงก่อนจะพาไปหน้า Login
+
+โดยในไฟล์นี้ยังตั้งค่าได้มากกว่านี้ เช่น ระบุการ Redirect, ปรับ Headers, ปรับ Status Code — สามารถเข้าไปดูทั้งหมดที่ตั้งค่าได้[ที่นี่](https://docs.microsoft.com/en-us/azure/static-web-apps/configuration)
+
+---
+
+## ตั้งค่าการ Deploy แบบอัตโนมัติ
+
+<Image img={require("./1*CglSksQRkd1BIwy_dNTIxA.png")} />
+
+Static Web Apps มาพร้อมกับ[ส่วนขยาย Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurestaticwebapps) ที่ไม่ใช่แค่มาช่วยให้เรา Deploy ง่ายขึ้น แต่จะทำให้เป็นอัตโนมัติเลย แค่คลิกเดียวจะไปตั้งค่า GitHub Actions ใน GitHub Repository\* ให้เราอัตโนมัติ
+
+> \*นอกจาก GitHub แลัว Static Web Apps ยังรองรับ Azure Repos และ Azure Pipelines บน Azure DevOps อีกด้วย
+
+ทำให้การ Deploy แต่ละครั้งไม่ต้องทำอะไรมาก เพียงแค่ Push เข้าไปใน Branch หลักของ Repository จากนั้น GitHub Actions จะจัดการที่เหลือให้ทั้งหมด
+
+---
+
+## ข้อจำกัดของ Azure Static Web Apps
+
+ดูไปดูมาก็มีแต่ข้อดีเต็มไปหมด ทั้งสะดวกและก็ยังปลอดภัย แต่ด้วยยังเป็นบริการที่ใหม่ ใช้ไปสักพักก็พบข้อจำกัดอยู่หลายอย่าง ที่อาจทำให้รู้สึกไม่สะดวกกว่าเดิมก็เป็นได้
+
+### เว็บไซต์ต้องเป็นแบบ Static เท่านั้น
+
+ตรงนี้ไม่เชิงเป็นข้อจำกัดสักเท่าไร แต่จะจำกัดตัวเลือก Library หรือ Framework ที่ใช้ลงให้ต้องเป็น Single-page Application (SPA) หรือ Static Site Generator (SSG) เท่านั้น แต่ปัจจุบันก็มีให้เลือกอยู่มากมายอยู่แล้ว สามารถเข้าไปดูได้ที่ [Static Site Generators | Jamstack](https://jamstack.org/generators/)
+
+---
+
+### API ต้องพัฒนาด้วย Azure Functions เท่านั้น
+
+ถึงแม้ Azure Functions จะรองรับหลายภาษาทั้ง C#, JavaScript, Python และอื่น ๆ แต่จะมีการบังคับรูปแบบการเขียนอยู่ในรูปแบบ 1 API = 1 Function เช่น หากเรามี API `/api/products` ,`/api/users/` และ `/api/users/{userId}` เท่ากับว่าจะต้องสร้าง 3 Function เพื่อรองรับ 3 API นี้
+
+ทำให้ใช้ Framework สำหรับสร้าง API เช่น Express หรือ Flask แทบจะไม่ได้ (เป็นไปได้ถ้าหาทางเชื่อม Route ที่ถูกสร้างขึ้นมากับตัว Function ได้) ทำให้จำกัดรูปแบบในการพัฒนา API ไปอีกขั้น
+
+---
+
+### การ Deploy ต้องทำผ่าน GitHub Actions เท่านั้น
+
+อาจจะดูดีที่มีการตั้งค่า CI/CD ให้อัตโนมัติ แต่ว่านั่นเป็นช่องทางเดียวในการ Deploy ตัว Static Web Apps ไม่สามารถทำแบบแมนนวลได้
+
+การปรับแต่ง Pipeline นอกจากระบุ Branch แล้วก็ทำได้มากสุด[ตามใน Documentation](https://docs.microsoft.com/en-us/azure/static-web-apps/build-configuration) คือระบุโฟลเดอร์เว็บไซต์และ API, ระบุคำสั่งที่ใช้ Build เว็บไซต์และ API, สั่งให้ข้ามขั้นตอนการ Build
+
+ถึงแม้จะไปแกะตัว GitHub Actions เพื่อหาทาง Custom ตัว Pipeline ก็พบว่าเบื้องหลังทำงานเป็นทำผ่านอิมเมจ `mcr.microsoft.com/appsvc/staticappclient` ซึ่งปัจจุบันยังไม่เป็น Open source ทำให้ไม่รู้ว่าเบื้องหลังทำงานอย่างไร และไม่สามารถ Custom กระบวนการได้
+
+[**Source code for StaticSitesClient ? · Issue #306 · Azure/static-web-apps**  
+\_You can't perform that action at this time. You signed in with another tab or window. You signed out in another tab or…\_github.com](https://github.com/Azure/static-web-apps/issues/306 "https://github.com/Azure/static-web-apps/issues/306")[](https://github.com/Azure/static-web-apps/issues/306)
+
+---
+
+### ใช้งานร่วมกับ Terraform ได้ไม่เต็มที่
+
+เดี๋ยวนี้ Infrastructure as a Code (IaC) เริ่มแพร่หลาย แต่น่าจะเป็นฝันร้ายสำหรับคนที่อยากใช้ Static Web Apps เพราะเท่าที่เห็นด้านล่างคือ[ทั้งหมดที่สามารถตั้งค่าได้](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/static_site) ซึ่งก็มีแต่การตั้งค่าพื้นฐานเท่านั้น
+
+แม้แต่ Application settings ก็ไม่สามารถตั้งค่าผ่าน Terraform ได้เหมือนกับ Resource อื่น ๆ บน Azure
+
+<Image img={require("./1*1kIMDWvNUaKSzoafh_2XqA.png")} />
+
+มีเมนูเยอะแยะ แต่ตั้งได้นิดเดียว
+
+หมายเหตุ — ในแผน Standard ตัว Static Web Apps สามารถเชื่อม Azure Functions หรือ Authorization Provider ภายนอกได้ ตรงนี้ก็อาจจะทำให้สามารถตั้งค่าอะไรได้มากขึ้น
+
+---
+
+### การป้องกันหน้าเว็บหรือ API ทำบน Route ที่ซ้อนกันไม่ได้
+
+จากตัวอย่างจะเห็นได้ว่าใส่ `*` เป็น Wildcard เพื่อป้องกัน Route ที่ขึ้นต้นเหมือนกันไว้ให้หมด แต่ว่าจะใส่ `*` ได้เฉพาะ**ด้านหลังสุด**ของ Route เท่านั้น หากมี Route เช่น `/api/users/24/orders/18` จะไม่สามารถระบุเป็น `/api/users/*/orders/*` ได้
+
+---
+
+## สรุป Static Web Apps น่าใช้ไหม?
+
+ข้อดีก็เยอะ แต่ข้อจำกัดก็มี ส่วนคำตอบก็คือน่าใช้ แต่ไม่เหมาะกับเว็บไซต์ที่มีความซับซ้อน เนื่องด้วยข้อจำกัดด้านเทคโนโลยี, การตั้งค่า ตามที่ได้กล่าวมา โดยรวมแล้วจะเหมาะกับทำเว็บไซต์ส่วนตัวขนาดเล็กหรือว่าจะใช้เป็น Proof of Concept ใช้งานชั่วคราว เปิดแบบไว ๆ ใช้แปปเดียว ไม่ต้องมาปวดหัวกับการ Deploy มากนัก
+
+แต่ Static Web Apps ก็ยังถือเป็นบริการที่ใหม่พอสมควร หากสามารถแก้ไขด้านข้อจำกัดที่กล่าวมาได้ ก็จะเป็นแพลทฟอร์มสำหรับเว็บที่ดีเลยทีเดียว เพราะจะสามารถช่วยลดภาระของนักพัฒนาได้เป็นอย่างมาก เอาเวลาไปใช้กับการพัฒนาได้อย่างเต็มที่
+
+---
+
+## อ้างอิง
+
+- [Azure Static Web Apps — App Service | Microsoft Azure](https://azure.microsoft.com/en-us/services/app-service/static/)
+- [API support in Azure Static Web Apps with Azure Functions | Microsoft Docs](https://docs.microsoft.com/en-us/azure/static-web-apps/apis)
+- [Configure Azure Static Web Apps | Microsoft Docs](https://docs.microsoft.com/en-us/azure/static-web-apps/configuration#wildcards)

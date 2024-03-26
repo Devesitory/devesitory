@@ -1,0 +1,83 @@
+import Image from "@theme/IdealImage";
+
+# JavaScript ทำอะไรได้บ้าง?
+
+<Image img={require("./1*M98aWu8DBSH0lkr99jWG5Q.jpeg")} />
+
+นักพัฒนาน้อยคนนักที่จะไม่รู้จัก JavaScript เพราะว่าจากการ[สำรวจของ Stack Overflow ในปี 2020](https://insights.stackoverflow.com/survey/2020) จะเห็นได้ว่าในหมวดหมู่ภาษาโปรแกรมมิ่งยอดนิยม ตัว JavaScript นั้นได้รับคะแนนความนิยมถึง 67.7% อยู่ในอันดับหนึ่งติดต่อกันถึง 7 ปี เรามาดูกันว่าภาษายอดนิยมนี้ใช้ทำอะไรได้บ้าง?
+
+{/* truncate */}
+
+## เว็บไซต์
+
+<Image img={require("./1*dx3VCcTV5VpqXOVOCaSybQ.png")} />
+
+ผลการสำรวจเฟรมเวิร์คเว็บไซต์ยอดนิยมประจำปี 2020 — ที่มา Stack Overflow
+
+เมื่อพูดถึง JavaScript คนส่วนใหญ่ก็คงจะนึกถึงการนำไปพัฒนาเว็บไซต์อย่างแน่นอน เพราะจุดประสงค์ของภาษานี้ในตอนแรกก็คือนำมาใช้กับเว็บไซต์โดยเฉพาะ
+
+เมื่อมองลึกลงไปในแต่ละมุมของการพัฒนาเว็บไซต์ก็จะเห็นได้ว่าในแต่ละส่วนมีเฟรมเวิร์ค JavaScript รองรับทั้งหมดเลย
+
+- **Frontend**: ฝั่งหน้าบ้านหรือฝั่งที่โชว์ให้ผู้ใช้ดู ที่นิยมในปัจจุบันก็จะเป็น [React](https://reactjs.org/), [Vue.js](https://vuejs.org/), [Angular](https://angular.io/) และที่ขาดไม่ได้เลยก็คือ [jQuery](https://jquery.com/) ที่ถึงแม้ความนิยมจะลดลงเรื่อย ๆ แต่ก็ยัง[ครองอันดับหนึ่งของเฟรมเวิร์คเว็บไซต์ได้อยู่ในปี 2020](https://insights.stackoverflow.com/survey/2020#technology-web-frameworks-all-respondents2)
+- **Backend/API**: ฝั่งหลังบ้านหรือฝั่งที่ส่งข้อมูลให้กับฝั่งหน้าบ้านที่ติดต่อกับผ่าน API ที่รู้จักกันก็จะเป็น [Node.js](https://nodejs.org/en/), [Express](https://expressjs.com/) และ [Next.js](https://nextjs.org/) (ตัวนี้ทำฝั่ง Frontend ได้ด้วย!)
+- **Database**: ในส่วนของการติดต่อฐานข้อมูลก็สามารถทำได้จาก JavaScript โดยตรงเลย เช่น [Sequelize](https://sequelize.org/), [Prisma](https://www.prisma.io/), [Mongoose](https://mongoosejs.com/) และ [Apollo GraphQL](https://www.apollographql.com/)
+
+---
+
+## แอปพลิเคชันโทรศัพท์มือถือ
+
+<Image img={require("./0*3ZJi05_XI7s0RYqj.png")} />
+
+แผนภาพแสดงการทำงานของ NativeScript
+
+แอปฯที่พูดถึงนี้ ไม่ได้เป็นแบบเขียนเว็บไซต์ไปเปิดเป็นแอปฯในมือถือ แต่เป็นการเขียนเป็น Native เลย ซึ่งก็คือตอนเขียนใช้เป็น JavaScript แต่สามารถ Build เพื่อไปใช้งานกับ Android และ iOS ได้ โดยไม่จำเป็นต้องเขียนภาษา Java หรือ Swift เป็นเลย ซึ่งเฟรมเวิร์คที่เป็นที่รู้จักจะเป็น [Expo](https://expo.io/), [NativeScript](https://nativescript.org/) และ [Ionic](https://ionicframework.com/)
+
+### เขียนด้วยเฟรมเวิร์คเว็บไซต์ได้
+
+ความพิเศษของของเฟรมเวิร์คพวกนี้คือสามารถเขียนด้วยเฟรมเวิร์คเว็บไซต์ เช่น React, Vue.js หรือ Angular ได้เลย ซึ่งหากใครคุ้นเคยกับเฟรมเวิร์คเหล่านี้อยู่แล้ว ก็สามารถเริ่มพัฒนาได้เลย เพราะมีความแตกต่างเพียงเล็กน้อยเท่านั้น เช่น ด้านการจัดโครงสร้าง, การตกแต่งหน้าตา, การเปลี่ยนหน้าภายในตัวแอปฯ เป็นต้น
+
+---
+
+## แอปพลิเคชันเดสก์ทอป
+
+<Image img={require("./0*WJb2fhzrf4PxlI6b.png")} />
+
+Visual Studio Code แอปพลิเคชันเดสก์ทอปที่เขียนด้วย Electron
+
+อยากเขียนโปรแกรมมาใช้บนคอมฯใช่ไหม [Electron](https://www.electronjs.org/) ช่วยได้! เขียนโปรแกรมไว้ใช้บนคอมด้วย HTML, JavaScript และ CSS ได้เลย แถมยังเป็น Cross Platform เขียนครั้งเดียวสามารถนำไปรันได้ทั้งบน Windows, macOS และ Linux ได้เลย
+
+### เอาภาษาเว็บไซต์มาเขียนโปรแกรมคอม มันจะได้เรื่องหรอ?
+
+ในการตอบคำถามนี้ก็คงต้องให้ผู้ที่เคยใช้โปรแกรมที่เขียนด้วย Electron มาตอบ ซึ่งหากเคยใช้ [Visual Studio Code](https://code.visualstudio.com/), [Microsoft Teams](https://www.microsoft.com/en-US/microsoft-teams/group-chat-software), [Slack](https://slack.com/), [Skype](https://www.skype.com/en/), [Discord](https://discord.com/) หรือ [Atom](https://atom.io/) คุณได้เคยใช้โปรแกรมที่เขียนด้วย ​Electon แล้ว ซึ่งถ้าได้ใช้งานโปรแกรมเหล่านี้แล้วไม่พบปัญหาใด ๆ ก็คงจะได้คำตอบเกี่ยวกับคำถามนี้แล้ว
+
+---
+
+## เกมบนเว็บไซต์
+
+<Image img={require("./0*KPUSw3cknA3BFbcp.png")} />
+
+We Become What We Behold เกมที่สร้างด้วย PixiJS
+
+ในสมัยก่อนที่เกมบนเว็บมันจะเขียนด้วย Flash ที่ปัจจุบันถูกถอดออกจากเบราว์เซอร์ตัวหลัก ๆ ไปเกือบทั้งหมดเลย ทำให้ในปัจจุบันเกมบนเว็บส่วนใหญ่จึงต้องหันมาใช้ JavaScript แทน ซึ่งก็มีให้เลือกใช้หลายตัวเลือกไม่ว่าจะเขียนด้วย HTML Canvas เพียว ๆ หรือใช้เฟรมเวิร์คมาช่วย เช่น [PixiJS](https://github.com/pixijs/pixijs) หรือ [Phaser](https://github.com/photonstorm/phaser)
+
+สามารถดูเกมที่สร้างด้วย PixiJS ได้[ที่นี่](https://itch.io/games/top-rated/made-with-pixijs)
+
+---
+
+## สไลด์พรีเซนต์
+
+<Image img={require("./1*Qlk3RZlmivyuQdJ-APoIDg.png")} />
+
+Bespoke.js
+
+อยากทำพรีเซนต์เจ๋ง ๆ แต่บางอย่างเจ๋งเกินจน PowerPoint ทำไม่ได้ จะทำเป็นคลิปเลยก็ตัดต่อไม่ค่อยจะเป็น แต่เขียน JavaScript เป็นนี่! เอามาใช้ให้เป็นประโยชน์ดีกว่า เพราะ [reveal.js](https://revealjs.com/) และ [bespoke.js](http://markdalgleish.com/projects/bespoke.js/) ช่วยให้เราทำแบบนั้นได้
+
+---
+
+จะเห็นได้ว่ารู้แค่เพียง JavaScript ภาษาเดียวก็สามารถพัฒนาอะไรได้หลายอย่างเลย แต่มีข้อดีก็ต้องมีข้อเสีย เพราะบางอย่างก็ไม่ได้เหมาะกับ JavaScript เสมอไป อย่างเช่นการทำแอปฯโทรศัพท์มือถือ เฟรมเวิร์คพวกนี้จะเข้าถึง API ของตัว OS ได้ไม่หมดทุกตัว หรือจะทำเกมที่ใช้กราฟิกหนัก ๆ จะมารันในเว็บก็คงจะไม่เหมาะ ซึ่งในกรณีพวกนี้ไปใช้เครื่องมืออื่นที่ไม่ใช่ JavaScript คงจะเหมาะกว่า แต่อย่างน้อยก็ทำให้เราเห็นได้ถึงความอเนกประสงค์ของภาษานี้ที่ทำได้หลากหลายอย่าง
+
+## อ้างอิง
+
+- [6 Examples of JavaScript: Where and When to Use](https://trio.dev/blog/examples-javascript)
+- [Saying goodbye to Flash in Chrome](https://www.blog.google/products/chrome/saying-goodbye-flash-chrome/)
+- [Limitations — Expo Documentation](https://docs.expo.io/introduction/why-not-expo/)
