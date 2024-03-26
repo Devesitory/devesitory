@@ -16,10 +16,10 @@
     "format": "prettier --write \"./**/*.{ts,tsx,js,,md,html,css,scss}\" --config ./.prettierrc --ignore-path .gitignore"
   },
   "dependencies": {
-    "@docusaurus/core": "^3.0.0",
-    "@docusaurus/plugin-client-redirects": "^3.0.0",
-    "@docusaurus/plugin-ideal-image": "^3.0.0",
-    "@docusaurus/preset-classic": "^3.0.0",
+    "@docusaurus/core": "^3.1.1",
+    "@docusaurus/plugin-client-redirects": "^3.1.1",
+    "@docusaurus/plugin-ideal-image": "^3.1.1",
+    "@docusaurus/preset-classic": "^3.1.1",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.1.0",
     "prism-react-renderer": "^2.1.0",
@@ -27,8 +27,8 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^3.0.0",
-    "@docusaurus/tsconfig": "^3.0.0",
+    "@docusaurus/module-type-aliases": "^3.1.1",
+    "@docusaurus/tsconfig": "^3.1.1",
     "prettier": "^3.2.5",
     "typescript": "~5.2.2"
   },
