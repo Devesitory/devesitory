@@ -1,0 +1,54 @@
+import Image from "@theme/IdealImage";
+
+# ทำเอกสารบน Word ไม่ปวดตา ด้วยการปรับให้เป็น Dark Mode อย่างแท้จริง
+
+<Image img={require("./1*FUI5Tv-DJBXMfubI151WSA.jpeg")} />
+
+โปรแกรมเมอร์ใช่ว่าจะเขียนแต่โค้ดเสมอไป เพราะอย่างไรสายงานนี้ก็คงหนีการทำเอกสารไม่พ้น ไม่ว่าจะทำเอกสารรายงานลูกค้า, ทำคู่มือการใช้งาน หรือแม้แต่ทำรายงานประกอบโครงงานตั้งแต่สมัยเรียน
+
+{/* truncate */}
+
+จะทำเอกสารสลับจาก IDE มืด ๆ มา Microsoft Word ที่แม้จะมี Dark Mode แล้วแต่ก็ยังมีกระดาษสีขาวแสบตาอยู่ตรงกลางจออยู่ ในบทความสั้น ๆ นี้จะมาแสดงให้เห็นว่าต้องปรับอย่างไรให้มันเป็น Dark Mode อย่างแท้จริง!
+
+## ปรับให้กระดาษเป็น Dark Mode
+
+ปรับไม่ยากเลยแค่ไปที่ **Design > Page Color** แล้วเลือกสีดำก็เสร็จแล้ว เพราะตัว Word ก็ฉลาดช่วยปรับตัวหนังสือของเราเป็นสีขาวให้ด้วย
+
+<Image img={require("./1*NL2_dIGlKP6HoIMZ2MOSAg.png")} />
+
+> **แต่ไม่อยากให้ตอนตอนพิมพ์หรือแปลงเป็น PDF แล้วกระดาษมันดำทำไง?**
+
+ไม่ต้องทำอะไรเลย เพราะตามค่าเริ่มต้นแล้ว Word จะไม่พิมพ์สีหรือภาพพื้นหลังออกมา
+
+<Image img={require("./1*rZgTLflKdxh8NLxfEt7jwA.png")} />
+
+แต่ถ้าอยากให้พิมพ์พื้นหลังออกมาก็สามารถตั้งได้ใน
+
+<Image img={require("./1*pto9Om63ebuBXYVDxHAGdw.png")} />
+
+- **Windows**: File > Options > Print > Print background colors and images
+- **macOS**: Word > Preferences > Print > Print background colors and images
+
+คราวนี้เราก็จะได้ใช้ Word ในแบบที่เป็น Dark Mode อย่างแท้จริง!
+
+## ข้อแนะนำ
+
+ไม่ควรเปิดดำแบบ #000000 เพราะบางอย่างที่มีการตั้งสี เช่น ขอบตาราง จะกลืนไปกับพื้นหลัง ปรับให้ออกเทา ๆ อย่างน้อยก็จะพอได้เห็นขอบตาราง
+
+<Image img={require("./1*Z74ww4QFF8jLeJCYdwAiow.png")} />
+
+## เพิ่มเติม: เปิด Dark Mode ให้กับ Microsoft Word
+
+Word ของบางคนอาจจะยังไม่ได้เปิด Dark Mode ไว้ วิธีเปิดก็ง่ายมาก ๆ เพียงแค่ตั้งให้ Windows, macOS เป็น Dark Mode ตัว Word ก็จะปรับตามให้เอง
+
+### Windows
+
+เข้าไปที่ Settings > Personalization > Colors > เลือกเป็น Dark
+
+<Image img={require("./1*5wwYEJJbhxbv71OI8mLB7g.png")} />
+
+### macOS
+
+เข้าไปที่ System Preferences > General > เลือก Appearance เป็น Dark
+
+<Image img={require("./1*hEn-0WJMgbyEOhCs1qH7dA.png")} />
